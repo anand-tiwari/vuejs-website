@@ -26,7 +26,7 @@
         }
 
         console.log(data)
-        this.$router.push('/dashboard')
+        this.$router.push('/product')
       }
     }
   }

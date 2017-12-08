@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+require('./assets/sass/main.scss')
 
 require('@/api-mock/vue-mock')
 

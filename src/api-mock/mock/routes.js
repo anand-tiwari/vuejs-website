@@ -28,15 +28,21 @@ var routes = [
       status: 200,
       data: [{
         name: 'Samsung',
-        cost: '20k'
+        cost: '20k',
+        url: '/product/detail',
+        id: '1'
       },
       {
         name: 'iphone',
-        cost: '20k'
+        cost: '20k',
+        url: '/product/detail',
+        id: '2'
       },
       {
         name: 'lg',
-        cost: '20k'
+        cost: '20k',
+        url: '/product/detail',
+        id: '3'
       }]
     }
   }

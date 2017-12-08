@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import LoginPage from '@/pages/LoginPage'
 import DashboardPage from '@/pages/DashboardPage'
-import UserPage from '@/pages/UserPage'
+import ProductDetail from '@/pages/ProductDetail'
 
 Vue.use(Router)
 
@@ -14,14 +14,15 @@ export default new Router({
       component: LoginPage
     },
     {
-      path: '/dashboard',
-      name: 'Dashboard',
+      path: '/product',
+      name: 'Product',
       component: DashboardPage
     },
     {
-      path: '/dashboard/users',
-      name: 'User',
-      component: UserPage
+      path: '/product/detail/',
+      name: 'ProductDetail',
+      params: true,
+      component: ProductDetail
     }
   ],
   mode: 'history'
