@@ -19,9 +19,8 @@ export default new Router({
       component: DashboardPage
     },
     {
-      path: '/product/detail/',
+      path: '/product/detail',
       name: 'ProductDetail',
-      params: true,
       component: ProductDetail
     }
   ],

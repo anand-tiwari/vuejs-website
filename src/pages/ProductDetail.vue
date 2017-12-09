@@ -3,6 +3,28 @@
     <router-link to="/product">Back</router-link><br/>
     <h2>Product Detail Page !!!</h2>
     <h2>{{ $route.query.id }}</h2>
+    <div class="columns">
+      <div class="column is-6">
+        <div class="product-banner">
+          <meta itemprop="image" content="src/assets/lazy-load.svg">
+          <img class="lazyloaded" alt="Oberlo app banner" data-src="src/assets/phone.jpg"
+               src="src/assets/phone.jpg" width="160" height="160">
+        </div>
+        <div class="product-body">
+          <p class="product-name" itemprop="name">{{productDetail.name}}</p>
+          <p class="product-price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+            <span itemprop="price">{{productDetail.cost}}</span>
+          </p>
+          <p class="product-rating">
+            <span class="product-reviews">1477 reviews</span>
+            <span data-review-type="star" class="product-rating-star-halves product-rating-star-halves-10"></span>
+          </p>
+          <!--<p class="product-description" itemprop="description">
+            Easy dropshipping for hundreds of products to your Shopify store and never worry about packaging or shipping.&amp;#13;
+          </p>-->
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,10 +36,10 @@
       }
     },
     created () {
-      this.$store.dispatch('getUsers')
+      this.$store.dispatch('updateProductId')
     },
     computed: {
-      ...mapGetters(['users'])
+      ...mapGetters({productDetail: 'getProductDescriptions'})
     },
     methods: {
       saveData () {

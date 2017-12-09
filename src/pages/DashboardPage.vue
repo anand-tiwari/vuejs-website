@@ -8,7 +8,7 @@
       <div class="content-menu column is-10">
           <div class="columns">
             <div v-for="item in productData" class="item-container column is-2">
-              <router-link :to="{ name: item.url , params:{id:item.id}}">
+              <router-link :to="{ path: item.url , query:{id:item.id}}">
               <div class="product-banner">
                 <meta itemprop="image" content="src/assets/lazy-load.svg">
                 <img class="lazyloaded" alt="Oberlo app banner" data-src="src/assets/phone.jpg"
