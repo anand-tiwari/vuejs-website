@@ -1,12 +1,48 @@
 <template>
   <div>
-    <h2>Dashboard</h2>
     <div class="columns">
       <div class="side-menu column is-2">
-        <h2>side menu</h2>
+        <div id="leftNavContainer">
+          <h2>Brand</h2>
+          <ul class="unordered-list">
+            <li>
+              <span class="a-list-item">
+                <span class="a-declarative">
+                  <div class="a-checkbox s-ref-link-cursor a-spacing-none">
+                    <label>
+                      <input type="checkbox" value="lg" v-model="brands"
+                             v-on:change="filterData">
+                      <span class="a-label a-checkbox-label">
+                        <span class="a-size-small a-color-base s-ref-text-link s-ref-link-cursor">LG</span>
+                      </span>
+                    </label>
+                  </div>
+                </span>
+              </span>
+            </li>
+            <li>
+              <!--<router-link :to="{ path: 'product', query:{b:'samsung'} }">-->
+              <span class="a-list-item">
+                <span class="a-declarative">
+                  <div class="a-checkbox s-ref-link-cursor a-spacing-none">
+                    <label>
+                      <input type="checkbox" value="samsung" v-model="brands"
+                             v-on:change="filterData">
+                      <span class="a-label a-checkbox-label">
+                        <span class="a-size-small a-color-base s-ref-text-link s-ref-link-cursor">Samsung</span>
+                      </span>
+                    </label>
+                  </div>
+                </span>
+              </span>
+              <!--</router-link>-->
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="content-menu column is-10">
-          <div class="columns">
+        <div class="container is-fluid">
+          <div class="columns is-multiline">
             <div v-for="item in productData" class="item-container column is-2">
               <router-link :to="{ name: 'Productdetail' , params:{id:item.id}}">
               <div class="product-banner">
@@ -16,6 +52,7 @@
               </div>
               <div class="product-body">
                 <p class="product-name" itemprop="name">{{item.name}}</p>
+                <p class="product-name" itemprop="name">{{item.id}}</p>
                 <p class="product-price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
                   <span itemprop="price">{{item.cost}}</span>
                 </p>
@@ -30,6 +67,7 @@
               </router-link>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -41,13 +79,24 @@
     name: 'DashboardPage',
     data () {
       return {
+        brands: []
       }
     },
     created () {
-      this.$store.dispatch('getProducts')
+      this.$store.dispatch('getProducts', {q: this.$route.query.b})
     },
     computed: {
       ...mapGetters(['productData'])
+    },
+    methods: {
+      filterData: function (event) {
+        this.$store.dispatch('getProducts', {q: this.brands})
+        if (this.brands.length !== 0) {
+          this.$router.push({path: 'product', query: {b: this.brands.join(';')}})
+        } else {
+          this.$router.push({path: 'product'})
+        }
+      }
     }
   }
 </script>
@@ -57,12 +106,22 @@
   .content-menu{
   }
   .item-container{
-    padding: 1px;
-    margin: 3px 5px;
+    padding: 5px;
+    margin: 6px 17px;
     transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
     position: relative;
   }
   .product-banner{
     width: 100%;
+  }
+  .product-body{
+    text-align: center;
+  }
+  .unordered-list{
+    margin-left: 0;
+    color: #111;
+  }
+  a{
+    color: black;
   }
 </style>

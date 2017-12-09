@@ -28,9 +28,15 @@ const actions = {
       commit('setUsers', response.body.data)
     })
   },
-  getProducts: ({commit}) => {
+  getProducts: ({commit}, param) => {
     api.getProducts((resources) => {
-      commit('setProducts', resources.body.data)
+      let data = resources.body.data
+      if (param.q !== undefined && Object.keys(param.q).length !== 0) {
+        data = data.filter(
+          (u) => param.q.indexOf(u.brand) >= 0
+        )
+      }
+      commit('setProducts', data)
     })
   },
   getProductById: ({commit}, param) => {
