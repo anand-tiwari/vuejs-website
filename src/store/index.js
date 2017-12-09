@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const state = {
   users: [],
   products: [],
-  productId: undefined
+  productDetail: []
 }
 
 const mutations = {
@@ -17,8 +17,8 @@ const mutations = {
   setProducts: (state, value) => {
     state.products = value
   },
-  updateProductId: (state, value) => {
-    state.productId = value.toString()
+  setProductDetail: (state, value) => {
+    state.productDetail = value
   }
 }
 
@@ -33,8 +33,12 @@ const actions = {
       commit('setProducts', resources.body.data)
     })
   },
-  updateProductId: ({commit}) => {
-    commit('updateProductId', 1)
+  getProductById: ({commit}, param) => {
+    api.getProducts((resources) => {
+      commit('setProductDetail', resources.body.data.filter(
+        (u) => u.id === param.id
+      ))
+    })
   }
 }
 
@@ -45,11 +49,8 @@ const getters = {
   productData: (state) => {
     return state.products
   },
-  getProductDescriptions: (state) => {
-    let productDetail = state.products.filter(
-      (u) => u.id === state.productId
-    )
-    return productDetail[0]
+  getProductDetail: (state) => {
+    return state.productDetail
   }
 }
 
