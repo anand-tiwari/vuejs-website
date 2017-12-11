@@ -4,10 +4,38 @@ import api from '@/api'
 
 Vue.use(Vuex)
 
+const facetList = {
+  brandFacets: [
+    {
+      'key': 'lg',
+      'value': 'lg'
+    }, {
+      'key': 'samsung',
+      'value': 'samsung'
+    }
+  ],
+  colorFacets: [
+    {
+      'key': 'red',
+      'value': 'red'
+    }, {
+      'key': 'blue',
+      'value': 'blue'
+    }
+  ]
+}
+
+const selectedFacetList = {
+  brands: [],
+  colors: []
+}
+
 const state = {
   users: [],
   products: [],
-  productDetail: []
+  productDetail: [],
+  facetList: facetList,
+  selectedFacetList: selectedFacetList
 }
 
 const mutations = {
@@ -19,6 +47,22 @@ const mutations = {
   },
   setProductDetail: (state, value) => {
     state.productDetail = value
+  },
+  setSelectedFacet: (state, value) => {
+    if (value['b'] !== undefined) {
+      let facet = value.b
+      if (!Array.isArray(value.b)) {
+        facet = value.b.split(';')
+      }
+      state.selectedFacetList.brands = facet
+    }
+    if (value['c'] !== undefined) {
+      let facet = value.c
+      if (!Array.isArray(value.c)) {
+        facet = value.c.split(';')
+      }
+      state.selectedFacetList.colors = facet
+    }
   }
 }
 
@@ -31,12 +75,13 @@ const actions = {
   getProducts: ({commit}, param) => {
     api.getProducts((resources) => {
       let data = resources.body.data
-      if (param.q !== undefined && Object.keys(param.q).length !== 0) {
+      if (param.b !== undefined && Object.keys(param.b).length !== 0) {
         data = data.filter(
-          (u) => param.q.indexOf(u.brand) >= 0
+          (u) => param.b.indexOf(u.brand) >= 0
         )
       }
       commit('setProducts', data)
+      commit('setSelectedFacet', param)
     })
   },
   getProductById: ({commit}, param) => {
@@ -57,6 +102,12 @@ const getters = {
   },
   getProductDetail: (state) => {
     return state.productDetail
+  },
+  getFacetList: (state) => {
+    return state.facetList
+  },
+  getSelectedFacet: (state) => {
+    return state.selectedFacetList
   }
 }
 

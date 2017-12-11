@@ -3,41 +3,32 @@
     <div class="columns">
       <div class="side-menu column is-2">
         <div id="leftNavContainer">
-          <h2>Brand</h2>
-          <ul class="unordered-list">
-            <li>
-              <span class="a-list-item">
-                <span class="a-declarative">
-                  <div class="a-checkbox s-ref-link-cursor a-spacing-none">
+            <div>
+                <h2>Brand</h2>
+                <ul class="unordered-list">
+                  <li v-for="brand in facetList.brandFacets">
+                    <div class="a-checkbox">
+                      <label>
+                        <input type="checkbox" :id="brand.key" :value="brand.value" v-model="selectedFacetList.brands" @change="filterData">
+                        <span>{{brand.value}}</span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+            </div>
+            <div>
+              <h2>Color</h2>
+              <ul class="unordered-list">
+                <li v-for="color in facetList.colorFacets">
+                  <div class="a-checkbox">
                     <label>
-                      <input type="checkbox" value="lg" v-model="brands"
-                             v-on:change="filterData">
-                      <span class="a-label a-checkbox-label">
-                        <span class="a-size-small a-color-base s-ref-text-link s-ref-link-cursor">LG</span>
-                      </span>
+                      <input type="checkbox" :id="color.key" :value="color.value" v-model="selectedFacetList.colors" @change="filterData">
+                      <span>{{color.value}}</span>
                     </label>
                   </div>
-                </span>
-              </span>
-            </li>
-            <li>
-              <!--<router-link :to="{ path: 'product', query:{b:'samsung'} }">-->
-              <span class="a-list-item">
-                <span class="a-declarative">
-                  <div class="a-checkbox s-ref-link-cursor a-spacing-none">
-                    <label>
-                      <input type="checkbox" value="samsung" v-model="brands"
-                             v-on:change="filterData">
-                      <span class="a-label a-checkbox-label">
-                        <span class="a-size-small a-color-base s-ref-text-link s-ref-link-cursor">Samsung</span>
-                      </span>
-                    </label>
-                  </div>
-                </span>
-              </span>
-              <!--</router-link>-->
-            </li>
-          </ul>
+                </li>
+              </ul>
+            </div>
         </div>
       </div>
       <div class="content-menu column is-10">
@@ -60,9 +51,6 @@
                   <span class="product-reviews">1477 reviews</span>
                   <span data-review-type="star" class="product-rating-star-halves product-rating-star-halves-10"></span>
                 </p>
-                <!--<p class="product-description" itemprop="description">
-                  Easy dropshipping for hundreds of products to your Shopify store and never worry about packaging or shipping.&amp;#13;
-                </p>-->
               </div>
               </router-link>
             </div>
@@ -75,24 +63,33 @@
 
 <script>
   import {mapGetters} from 'vuex'
+  import CustomCheckbox from '../components/Checkbox'
   export default {
     name: 'DashboardPage',
+    components: {
+      CustomCheckbox
+    },
     data () {
       return {
-        brands: []
+       // brands: [],
+       // colors: []
       }
     },
     created () {
-      this.$store.dispatch('getProducts', {q: this.$route.query.b})
+      this.$store.dispatch('getProducts', {b: this.$route.query.b, c: this.$route.query.c})
     },
     computed: {
-      ...mapGetters(['productData'])
+      ...mapGetters({
+        productData: 'productData',
+        facetList: 'getFacetList',
+        selectedFacetList: 'getSelectedFacet'
+      })
     },
     methods: {
       filterData: function (event) {
-        this.$store.dispatch('getProducts', {q: this.brands})
-        if (this.brands.length !== 0) {
-          this.$router.push({path: 'product', query: {b: this.brands.join(';')}})
+        this.$store.dispatch('getProducts', {b: this.selectedFacetList.brands, c: this.selectedFacetList.colors})
+        if (this.selectedFacetList.brands.length !== 0 || this.selectedFacetList.colors.length !== 0) {
+          this.$router.push({ path: 'product', query: {b: this.selectedFacetList.brands.join(';'), c: this.selectedFacetList.colors.join(';')} })
         } else {
           this.$router.push({path: 'product'})
         }
