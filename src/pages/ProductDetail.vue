@@ -6,9 +6,9 @@
     <div class="columns">
       <div class="column is-6" v-for="item in productDetail">
         <div class="product-banner">
-          <meta itemprop="image" content="src/assets/lazy-load.svg">
-          <img class="lazyloaded" alt="Oberlo app banner" data-src="src/assets/phone.jpg"
-               src="src/assets/phone.jpg" width="160" height="160">
+          <meta itemprop="image" content="~assets/lazy-load.svg">
+          <img class="lazyloaded" alt="Oberlo app banner" data-src="~assets/phone.jpg"
+               src="~assets/phone.jpg" width="160" height="160">
         </div>
         <div class="product-body">
           <p class="product-name" itemprop="name">{{item.name}}</p>
@@ -19,9 +19,6 @@
             <span class="product-reviews">1477 reviews</span>
             <span data-review-type="star" class="product-rating-star-halves product-rating-star-halves-10"></span>
           </p>
-          <!--<p class="product-description" itemprop="description">
-            Easy dropshipping for hundreds of products to your Shopify store and never worry about packaging or shipping.&amp;#13;
-          </p>-->
         </div>
       </div>
     </div>
@@ -47,3 +44,6 @@
     }
   }
 </script>
+<style>
+
+</style>

@@ -49,6 +49,8 @@ const mutations = {
     state.productDetail = value
   },
   setSelectedFacet: (state, value) => {
+    // state.selectedFacetList.brands = []
+    // state.selectedFacetList.colors = []
     if (value['b'] !== undefined) {
       let facet = value.b
       if (!Array.isArray(value.b)) {
