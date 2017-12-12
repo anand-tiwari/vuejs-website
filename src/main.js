@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 require('./assets/sass/main.scss')
+require('font-awesome/css/font-awesome.css')
 
 require('@/api-mock/vue-mock')
 

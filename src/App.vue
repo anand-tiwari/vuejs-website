@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <loader></loader>
     <router-view/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
+  import Loader from './components/shared/loader'
+  export default {
+    name: 'app',
+    components: {
+      Loader
+    }
 }
 </script>
 

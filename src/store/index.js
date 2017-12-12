@@ -35,7 +35,8 @@ const state = {
   products: [],
   productDetail: [],
   facetList: facetList,
-  selectedFacetList: selectedFacetList
+  selectedFacetList: selectedFacetList,
+  loaderState: false
 }
 
 const mutations = {
@@ -65,6 +66,9 @@ const mutations = {
       }
       state.selectedFacetList.colors = facet
     }
+  },
+  setLoaderState: (state, payload) => {
+    state.loaderState = payload
   }
 }
 
@@ -75,6 +79,7 @@ const actions = {
     })
   },
   getProducts: ({commit}, param) => {
+    commit('setLoaderState', true)
     api.getProducts((resources) => {
       let data = resources.body.data
       if (param.b !== undefined && Object.keys(param.b).length !== 0) {
@@ -82,6 +87,7 @@ const actions = {
           (u) => param.b.indexOf(u.brand) >= 0
         )
       }
+      commit('setLoaderState', false)
       commit('setProducts', data)
       commit('setSelectedFacet', param)
     })
@@ -92,6 +98,9 @@ const actions = {
         (u) => u.id === param.id
       ))
     })
+  },
+  loaderShowAction: ({ commit }, payload) => {
+    commit('setLoaderState', payload)
   }
 }
 
@@ -110,6 +119,9 @@ const getters = {
   },
   getSelectedFacet: (state) => {
     return state.selectedFacetList
+  },
+  getLoaderState: (state) => {
+    return state.loaderState
   }
 }
 

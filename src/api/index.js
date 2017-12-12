@@ -7,17 +7,21 @@ Vue.use(VueResource)
 
 export default {
   getUsers (cb) {
-    Vue.http.get(config.api.users).then((res) => {
-      cb(res)
-    }, () => {
-      // TODO
-    })
+    setTimeout(function () {
+      Vue.http.get(config.api.users).then((res) => {
+        cb(res)
+      }, () => {
+        // TODO
+      })
+    }, 1000)
   },
   getProducts (cb) {
-    Vue.http.get(config.api.products).then((res) => {
-      cb(res)
-    }, () => {
-      // TODO
-    })
+    setTimeout(function () {
+      Vue.http.get(config.api.products).then((res) => {
+        cb(res)
+      }, () => {
+        // TODO
+      })
+    }, 1000)
   }
 }
