@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="~assets/logo-blibli.png">
     <router-view/>
   </div>
 </template>
@@ -18,7 +17,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  /*margin-top: 60px;*/
-  /*margin-left: 100px;*/
+  margin-top: 10px;
 }
 </style>

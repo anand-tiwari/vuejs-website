@@ -24,6 +24,7 @@
     </div>
   </div>
 </template>
+<style src="./css/product-detail-page.css" scoped></style>
 
 <script>
   import {mapGetters} from 'vuex'
@@ -44,6 +45,3 @@
     }
   }
 </script>
-<style>
-
-</style>

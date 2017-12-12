@@ -24,6 +24,9 @@
     </div>
   </div>
 </template>
+
+<style src="../pages/css/product-list.css" scoped></style>
+
 <script>
   import {mapGetters} from 'vuex'
   export default {
@@ -46,17 +49,3 @@
     }
   }
 </script>
-<style>
-  .item-container{
-    padding: 5px;
-    margin: 6px 17px;
-    transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
-    position: relative;
-  }
-  .product-banner{
-    width: 100%;
-  }
-  .product-body{
-    text-align: center;
-  }
-</style>

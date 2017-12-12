@@ -1,7 +1,7 @@
 <template>
   <div id="leftNavContainer">
-    <div>
-      <h2>Brand</h2>
+    <div class="filters">
+      <h2 class="filter-title">Brand</h2>
       <ul class="unordered-list">
         <li v-for="brand in facetList.brandFacets">
           <div class="a-checkbox">
@@ -13,8 +13,8 @@
         </li>
       </ul>
     </div>
-    <div>
-      <h2>Color</h2>
+    <div class="filters">
+      <h2 class="filter-title">Color</h2>
       <ul class="unordered-list">
         <li v-for="color in facetList.colorFacets">
           <div class="a-checkbox">
@@ -28,6 +28,9 @@
     </div>
   </div>
 </template>
+
+
+<style src="../pages/css/left-nav-container.css" scoped></style>
 
 <script>
   import { mapGetters } from 'vuex'
@@ -57,13 +60,3 @@
     }
   }
 </script>
-
-<style>
-  .unordered-list{
-    margin-left: 0;
-    color: #111;
-  }
-  a{
-    color: black;
-  }
-</style>

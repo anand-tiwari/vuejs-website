@@ -2,23 +2,23 @@
   <div>
     <div class="columns">
       <div class="side-menu column is-2">
-        <left-side></left-side>
+        <left-nav-container-section></left-nav-container-section>
       </div>
       <div class="content-menu column is-10">
-        <product-list-side></product-list-side>
+        <product-list-container-section></product-list-container-section>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import leftSide from '../components/letfSide'
-  import productListSide from '../components/productListSide'
+  import leftNavContainerSection from '../components/leftNavContainerSection'
+  import productListContainerSection from '../components/productListContainerSection'
   export default {
     name: 'DashboardPage',
     components: {
-      leftSide,
-      productListSide
+      leftNavContainerSection,
+      productListContainerSection
     },
     data () {
       return {
@@ -26,9 +26,4 @@
     }
   }
 </script>
-<style>
-  .side-menu{
-  }
-  .content-menu{
-  }
-</style>
+<style></style>
