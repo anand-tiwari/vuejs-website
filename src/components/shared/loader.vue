@@ -2,7 +2,8 @@
   <div class='loader-container' :class='{"show": show, "hidden": !show}'>
     <div class="curved-div">
       <div class="colour-magic">
-        <i class="fa fa-circle-o-notch fa-2x rotate"></i>
+        <!--<i class="fa fa-circle-o-notch fa-2x rotate"></i>-->
+        <i class="fa fa-spinner fa-spin"></i>
       </div>
       <div class="loading">
         {{ loading }}
