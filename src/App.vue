@@ -22,6 +22,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin-top: 10px;
+  background: #F1F3F6
 }
 </style>

@@ -7,7 +7,7 @@ import store from './store'
 require('./assets/sass/main.scss')
 require('font-awesome/css/font-awesome.css')
 
-require('@/api-mock/vue-mock')
+require('@vue-mock')
 
 Vue.config.productionTip = false
 

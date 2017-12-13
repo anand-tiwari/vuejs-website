@@ -37,6 +37,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'assets': resolve('src/assets'),
+      '@vue-mock': process.env.NODE_ENV === 'production'
+        ? resolve('src/empty.js')
+        : resolve('src/api-mock/vue-mock.js')
     }
   },
   module: {

@@ -13,3 +13,16 @@
 a{
   color: black;
 }
+.product-item:hover{
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, .11);
+}
+.product-item {
+  padding: 16px;
+  position: relative;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.product-section{
+  background: #fff;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, .4);
+}

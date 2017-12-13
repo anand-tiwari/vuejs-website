@@ -3,7 +3,10 @@
   color: #111;
 }
 #leftNavContainer{
-  padding-left: 20px;
+  margin-left: 20px;
+  padding-left: 10px;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, .4);
+  background: #fff;
 }
 .filters{
   margin: 13px 0;
