@@ -7,10 +7,20 @@
 
 <script>
   import Loader from './components/shared/loader'
+ // import firebase from 'firebase'
+ // import { config } from './firebase-config'
+
+ /* let app = firebase.initializeApp(config)
+  let db = app.database()
+  let bookRef = db.ref('books') */
+
   export default {
     name: 'app',
     components: {
       Loader
+    },
+    firebase: {
+      // books: bookRef
     }
 }
 </script>

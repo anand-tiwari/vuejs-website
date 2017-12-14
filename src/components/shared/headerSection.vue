@@ -45,19 +45,42 @@
 <style src="./css/header-section.css"></style>
 <script>
   import {mapGetters} from 'vuex'
+  import firebase from 'firebase'
+  import { config } from '../../firebase-config'
+  let app = firebase.initializeApp(config)
+  let db = app.database()
+  let booksRef = db.ref('books')
+
   export default {
     name: 'header',
     data () {
       return {
+        newTodoText: ''
       }
     },
     created () {
-      this.$store.dispatch('getProducts', {b: this.$route.query.b, c: this.$route.query.c})
+      this.$store.dispatch('setTodosRef', booksRef)
     },
     computed: {
       ...mapGetters({
-        productData: 'productData'
+        books: 'getBooks'
       })
+    },
+    methods: {
+      removeTodo: function (todo) {
+        booksRef.child(todo['.key']).remove()
+      },
+      addTodo: function () {
+        if (this.newTodoText.trim()) {
+          booksRef.push({
+            text: this.newTodoText
+          })
+          this.newTodoText = ''
+        }
+      },
+      updateTodoText: function (todo, newText) {
+        booksRef.child(todo['.key']).child('text').set(newText)
+      }
     }
   }
 </script>

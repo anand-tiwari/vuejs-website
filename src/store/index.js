@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import api from '@/api'
+// import firebase from 'firebase'
+import { firebaseMutations, firebaseAction } from 'vuexfire'
 
 Vue.use(Vuex)
 
@@ -36,7 +38,8 @@ const state = {
   productDetail: [],
   facetList: facetList,
   selectedFacetList: selectedFacetList,
-  loaderState: false
+  loaderState: false,
+  books: []
 }
 
 const mutations = {
@@ -69,7 +72,8 @@ const mutations = {
   },
   setLoaderState: (state, payload) => {
     state.loaderState = payload
-  }
+  },
+  ...firebaseMutations
 }
 
 const actions = {
@@ -101,7 +105,13 @@ const actions = {
   },
   loaderShowAction: ({ commit }, payload) => {
     commit('setLoaderState', payload)
-  }
+  },
+  setTodosRef: firebaseAction(
+    ({
+       bindFirebaseRef
+      }, ref) => {
+      bindFirebaseRef('books', ref)
+    })
 }
 
 const getters = {
@@ -122,6 +132,9 @@ const getters = {
   },
   getLoaderState: (state) => {
     return state.loaderState
+  },
+  getBooks: (state) => {
+    return state.books
   }
 }
 
